@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Chittoda 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 15%;
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+}
+
+p {
+    color: white;
+    font-size: 18px;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff1744;
+    color: white;
+}
+
+#noBtn {
+    background-color: black;
+    color: white;
+    position: absolute;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 22px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="three.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>Chittoda 💖<br>Will you be my Valentine?</h1>
+    <p>I already know the answer, but I still want to hear it 😘</p>
+
+    <button id="yesBtn">Yes ❤️</button>
+    <button id="noBtn">No 💔</button>
+</div>
+
+<script>
+
+const music = document.getElementById("bgMusic");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+/* Start music when user clicks anywhere */
+document.body.addEventListener("click", function() {
+    music.play();
+}, { once: true });
+
+noBtn.addEventListener("mouseover", function() {
+    noBtn.innerText = "Can't touch this 😜";
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+});
+
+yesBtn.addEventListener("click", function() {
+
+    document.body.innerHTML = `
+        <audio autoplay loop>
+            <source src="three.mp3" type="audio/mpeg">
+        </audio>
+
+        <div style="margin-top:20%; text-align:center;">
+            <h1 style="color:white;">Yay!! 💖 I knew you would say YES 😍</h1>
+            <p style="color:white; font-size:20px;">
+            Now come here and give me a hug 🤗💋
+            </p>
+        </div>
+    `;
+
+    setInterval(createHeart, 200);
+});
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+</script>
+
+</body>
+</html>
